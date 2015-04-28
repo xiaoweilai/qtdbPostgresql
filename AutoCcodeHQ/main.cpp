@@ -1,4 +1,8 @@
 #include <QtGui/QApplication>
+#include <QSqlDatabase>
+#include <QSqlDriver>
+#include <QDebug>
+
 #include "mainwindow.h"
 #include "libpq-fe.h"
 
@@ -16,6 +20,12 @@ int main(int argc, char *argv[])
         PQfinish(conn);
        return a.exec();
     }
+
+    QStringList drivers = QSqlDatabase::drivers();
+        foreach(QString driver, drivers)
+            qDebug()<<driver;
+
+
     printf("connect db successfull...\n");
 
     PQfinish(conn);
